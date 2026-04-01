@@ -58,7 +58,7 @@ l(y_n, \hat{y}_n^{(j-1)}+f_j(\mathbf{x}_n)) = l(y_n, \hat{y}_n^{(j-1)}) + g_n f_
 \begin{align}
 \tilde{\mathcal{L}}^{(j)} &= \sum_{n=1}^{N} \left[g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \gamma T_j + \frac{1}{2} \lambda \sum_{t=1}^{T_j}\left(w_t^{(j)}\right)^2 + const. \\
 &= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}\left(w_t^{(j)}\right)^2 \sum_{n \in N_t}h_n \right] + \gamma T_j + \frac{1}{2} \lambda \sum_{t=1}^{T_j}\left(w_t^{(j)}\right)^2 + const.\\
-&= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}{(w_t^{j})}^2 \sum_{n \in N_t}h_n +\frac{1}{2} \lambda \left(w_t^{(j)}\right)^2 \right] + \gamma T_j +const. \\
+&= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}\left(w_t^{(j)}\right)^2 \sum_{n \in N_t}h_n +\frac{1}{2} \lambda \left(w_t^{(j)}\right)^2 \right] + \gamma T_j +const. \\
 &= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}\left(w_t^{(j)}\right)^2 \{\sum_{n \in N_t}h_n + \lambda \}  \right] + \gamma T_j +const. 
 \end{align}
 ```

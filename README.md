@@ -31,22 +31,22 @@ full-scratch implementation by sky
 
 つまり、（１）式を
 ```math
-\mathcal{L}^{(j)} = \sum_{n=1}^{N} l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n))+\Omega(f_j)
+\mathcal{L}^{(j)} = \sum_{n=1}^{N} l(y_n, \hat{y}_n^{(j-1)}+f_j(\mathbf{x}_n))+\Omega(f_j)
 ```
 のような目的関数として考える。
-この式を直接微分して最小化するのはかなり計算コストがかかる（らしい）ので、 $l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n))$ のテイラー展開による２次近似を考える。
+この式を直接微分して最小化するのはかなり計算コストがかかる（らしい）ので、 $l(y_n, \hat{y}_n^{(j-1)}+f_j(\mathbf{x}_n))$ のテイラー展開による２次近似を考える。
 この２次近似は
 ```math
-l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n)) = l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2
+l(y_n, \hat{y}_n^{(j-1)}+f_j(\mathbf{x}_n)) = l(y_n, \hat{y}_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2
 ```
-で与えられ、 $g_n=\frac{\partial }{\partial y_n^{(j-1)}}l$ 、 $h_n=\left(\frac{\partial}{\partial y_n^{(j-1)}}\right)^2 l$ である。
+で与えられ、 $g_n=\frac{\partial }{\partial \hat{y}_n^{(j-1)}}l$ 、 $h_n=\left(\frac{\partial}{\partial \hat{y}_n^{(j-1)}}\right)^2 l$ である。
 
-今、 $(j-1)$ 番目までの決定木は固定化しているので $l(y_n, y_n^{(j-1)})=const.$ である。
+今、 $(j-1)$ 番目までの決定木は固定化しているので $l(y_n, \hat{y}_n^{(j-1)})=const.$ である。
 よって、 $j$ 番目の決定木を追加した時に最小化される目的関数は
 ```math
 \begin{align}
 \mathcal{L}^{(j)} &\simeq \tilde{\mathcal{L}}^{(j)} \\
-&= \sum_{n=1}^{N} \left[ l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \Omega(f_j) \\
+&= \sum_{n=1}^{N} \left[ l(y_n, \hat{y}_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \Omega(f_j) \\
 &= \sum_{n=1}^{N} \left[g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \Omega(f_j) + const.
 \end{align} \cdots (2)
 ```

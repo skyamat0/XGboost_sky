@@ -65,7 +65,7 @@ l(y_n, \hat{y}_n^{(j-1)}+f_j(\mathbf{x}_n)) = l(y_n, \hat{y}_n^{(j-1)}) + g_n f_
 となる。
 これを $w_t^{(j)}$ について微分して最小値を求めると、
 ```math
-w_t^{(j)} = \frac{\sum_{n \in N_t}g_n}{\sum_{n \in N_t}(h_n + \lambda)}
+w_t^{(j)} = -\frac{\sum_{n \in N_t}g_n}{\sum_{n \in N_t}h_n + \lambda}
 ```
 の時、
 ```math

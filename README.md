@@ -69,7 +69,7 @@ w_t^{(j)} = -\frac{\sum_{n \in N_t}g_n}{\sum_{n \in N_t}h_n + \lambda}
 ```
 の時、
 ```math
-\tilde{\mathcal{L}}^{(j)}_{\rm{min}} = -\frac{1}{2}\sum_{t=1}^{T_j} \frac{\left(\sum_{n \in N_t}g_n\right)^2}{\sum_{n \in N_t}h_n + \lambda}+\gamma T
+\tilde{\mathcal{L}}^{(j)}_{\rm{min}} = -\frac{1}{2}\sum_{t=1}^{T_j} \frac{\left(\sum_{n \in N_t}g_n\right)^2}{\sum_{n \in N_t}h_n + \lambda}+\gamma T_j
 ```
 となる。また、個々の木分割に関する最適化も行うので、前節で導出した最小損失 $`\tilde{L}_{\mathrm{min}}^{(j)}`$ は、木の構造（どのデータがどの葉に属するか）が固定されている場合の指標である。しかし、可能なすべての木構造を網羅的に探索することは計算量的に不可能である。そのため、実際には1つの根ノードから始めて、**貪欲法（Greedy Algorithm）**を用いて再帰的にノードを分割していく。
 あるノードを分割した際の「良さ」を評価するため、分割前後の損失の減少量を 利得 (Gain) として定義する。ノード N に属するデータの集合を、ある特徴量としきい値によって $N_L​$ と $N_R$ と $`N=N_L \cup N_R, N_L \cap N_R = \emptyset`$ に分割したとき、その分割による利得 $`L_{\mathrm{split}}`$ は以下の式で与えられる。

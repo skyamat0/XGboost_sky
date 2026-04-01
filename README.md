@@ -9,7 +9,7 @@ full-scratch implementation by sky
 \mathcal{D}={(\mathbf{x}_n, y_n)}\left(|D| = N, \mathbf{x} \in \mathbb{R}^M, y \in \mathbb{R}\right)
 ```
 と定義する。
-この時、$\mathbf{x}_n$を入力した時のモデルによる出力値$\hat{y}_n$は
+この時、 $\mathbf{x}_n$ を入力した時のモデルによる出力値 $\hat{y}_n$ は
 ```math
 \hat{y}_{n} = \phi(\mathbf{x}_n) = \sum_{j=1}^{J}f_j(\mathbf{x}_n)
 ```

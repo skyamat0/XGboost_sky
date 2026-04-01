@@ -14,7 +14,7 @@ full-scratch implementation by sky
 \hat{y}_{n} = \phi(\mathbf{x}_n) = \sum_{j=1}^{J}f_j(\mathbf{x}_n)
 ```
 である。
-ここで $f_j$ は個々の決定木の出力で、 $`f_j \in \mathcal{F}, \mathcal{F} = \{ f_j \}_{j=1}^J`$ である。
+ここで $f_j$ は $j$ 番目の決定木を表す関数である。
 
 今、 $j$ 番目の出力時点での木の葉の数を $T_j$ とし、 $t \in \{1,...,T_j\}$ の葉の重みを ${w_t^{(j)}}$ とすると、正則化付きの目的関数（後では、単に目的関数と呼ぶ）は
 ```math

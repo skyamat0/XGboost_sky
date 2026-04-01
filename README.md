@@ -6,7 +6,7 @@ full-scratch implementation by sky
 ### データ定義からコスト関数まで
 データ集合を
 ```math
-\mathcal{D}={(\mathbf{x}_n, y_n)}_{n=1}^{N}\left(\mathbf{x} \in \mathbb{R}^M, y \in \mathbb{R}\right)
+\mathcal{D}=\{(\mathbf{x}_n, y_n)\}_{n=1}^{N}, \mathbf{x} \in \mathbb{R}^M, y \in \mathbb{R}
 ```
 と定義する。
 この時、 $\mathbf{x}_n$ を入力した時のモデルによる出力値 $\hat{y}_n$ は

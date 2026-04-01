@@ -6,15 +6,15 @@ full-scratch implementation by sky
 ### データ定義からコスト関数まで
 データ集合を
 ```math
-\mathcal{D}={(\mathbm{x}_n, y_n)}\left(|D| = N, \mathbm{x} \in \mathbb{R}^M, y \in \mathbb{R}\right)
+\mathcal{D}={(\mathbf{x}_n, y_n)}\left(|D| = N, \mathbf{x} \in \mathbb{R}^M, y \in \mathbb{R}\right)
 ```
 と定義する。
-この時、$\mathbm{x}_n$を入力した時のモデルによる出力値$\hat{y}_n$は
+この時、$\mathbf{x}_n$を入力した時のモデルによる出力値$\hat{y}_n$は
 ```math
-\hat{y}_{n} = \phi(\mathbm{x}_n) = \sum_{j=1}^{J}f_j(\mathbm{x}_n)
+\hat{y}_{n} = \phi(\mathbf{x}_n) = \sum_{j=1}^{J}f_j(\mathbf{x}_n)
 ```
 である。
-ここで$f_j$は個々の決定木の出力で、$f_j\in \mathcal{F}, \mathcal{F}=\{f_j(\mathbm{x}_n)\}_{j=1}^{J}$である。
+ここで$f_j$は個々の決定木の出力で、$f_j\in\mathcal{F},\mathcal{F}=\{f_j(\mathbf{x}_n)\}_{j=1}^{J}$である。
 
 今、$j$番目の出力時点での木の葉の数を$T_j$とし、$t \in \{1,...,T_j\}$の葉の重みを${w_t^{(j)}}$とすると、正則化付きの目的関数（後では、単に目的関数と呼ぶ）は
 ```math
@@ -31,13 +31,13 @@ full-scratch implementation by sky
 
 つまり、（１）式を
 ```math
-\mathcal{L}^{(j)} = \sum_{n=1}^{N} l(y_n, y_n^{(j-1)}+f_j(\mathbm{x}_n))+\Omega(f_j)
+\mathcal{L}^{(j)} = \sum_{n=1}^{N} l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n))+\Omega(f_j)
 ```
 のような目的関数として考える。
-この式を直接微分して最小化するのはかなり計算コストがかかる（らしい）ので、$ l(y_n, y_n^{(j-1)}+f_j(\mathbm{x}_n))$のテイラー展開による２次近似を考える。
+この式を直接微分して最小化するのはかなり計算コストがかかる（らしい）ので、$ l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n))$のテイラー展開による２次近似を考える。
 この２次近似は
 ```math
-l(y_n, y_n^{(j-1)}+f_j(\mathbm{x}_n)) = l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbm{x}_n) + \frac{1}{2}h_n \{f_j(\mathbm{x}_n)\}^2
+l(y_n, y_n^{(j-1)}+f_j(\mathbf{x}_n)) = l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2
 ```
 で与えられ、$g_n=\frac{\partial }{\partial y_n^{(j-1)}}l$、$h_n=\left(\frac{\partial}{\partial y_n^{(j-1)}}\right)^2 l$である。
 
@@ -46,17 +46,17 @@ l(y_n, y_n^{(j-1)}+f_j(\mathbm{x}_n)) = l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbm{x}
 ```math
 \begin{align}
 \mathcal{L}^{(j)} &\simeq \tilde{\mathcal{L}}^{(j)} \\
-&= \sum_{n=1}^{N} \left[ l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbm{x}_n) + \frac{1}{2}h_n \{f_j(\mathbm{x}_n)\}^2\right] + \Omega(f_j) \\
-&= \sum_{n=1}^{N} \left[g_n f_j(\mathbm{x}_n) + \frac{1}{2}h_n \{f_j(\mathbm{x}_n)\}^2\right] + \Omega(f_j) + const.
+&= \sum_{n=1}^{N} \left[ l(y_n, y_n^{(j-1)}) + g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \Omega(f_j) \\
+&= \sum_{n=1}^{N} \left[g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \Omega(f_j) + const.
 \end{align} \cdots (2)
 ```
 となる。
 
-ここで、分割$\mathcal{N}$を$\mathcal{N}=\{N_t\}_{t=1}^{T_j}$、$N_t=\{n|f_j(\mathbm{x}_n)=w_t^{(j)}\}$で与える（$N_t$は簡単に言えば、ある葉の重み$w_t$を出力するデータ$\mathbm{x}_n$のインデックス集合）。
+ここで、分割$\mathcal{N}$を$\mathcal{N}=\{N_t\}_{t=1}^{T_j}$、$N_t=\{n|f_j(\mathbf{x}_n)=w_t^{(j)}\}$で与える（$N_t$は簡単に言えば、ある葉の重み$w_t$を出力するデータ$\mathbf{x}_n$のインデックス集合）。
 これを用いて、（２）式は
 ```math
 \begin{align}
-\tilde{\mathcal{L}}^{(j)} &= \sum_{n=1}^{N} \left[g_n f_j(\mathbm{x}_n) + \frac{1}{2}h_n \{f_j(\mathbm{x}_n)\}^2\right] + \gamma T_j + \frac{1}{2} \lambda \sum_{t=1}^{T_j}\left(w_t^{(j)}\right)^2 + const. \\
+\tilde{\mathcal{L}}^{(j)} &= \sum_{n=1}^{N} \left[g_n f_j(\mathbf{x}_n) + \frac{1}{2}h_n \{f_j(\mathbf{x}_n)\}^2\right] + \gamma T_j + \frac{1}{2} \lambda \sum_{t=1}^{T_j}\left(w_t^{(j)}\right)^2 + const. \\
 &= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}\left(w_t^{(j)}\right)^2 \sum_{n \in N_t}h_n \right] + \gamma T_j + \frac{1}{2} \lambda \sum_{t=1}^{T_j}\left(w_t^{(j)}\right)^2 + const.\\
 &= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}{(w_t^{j})}^2 \sum_{n \in N_t}h_n +\frac{1}{2} \lambda \left(w_t^{(j)}\right)^2 \right] + \gamma T_j +const. \\
 &= \sum_{t=1}^{T_j}\left[w_t^{(j)}\sum_{n \in N_t}g_n + \frac{1}{2}\left(w_t^{(j)}\right)^2 \{\sum_{n \in N_t}h_n + \lambda \}  \right] + \gamma T_j +const. 

@@ -83,8 +83,9 @@ L_{\rm{split}} = \frac{1}{2} \left[ \frac{\left(\sum_{n \in N_L} g_n\right)^2}{\
 3. $\gamma$ :新たに葉を1つ増やすことに対するペナルティ（正則化項）。
 
 学習プロセスにおいては、すべての特徴量およびすべての分割候補点についてこの$`L_{\mathrm{split}}`$を計算し、利得が最大となる分割を採択する。さらに、木の学習においては、上記アルゴリズムに加えて以下の手法が併用される。
-* . Shrinkage（縮小）: 各ステップで追加される決定木の重みに学習率 η を乗じることで、個々の木の影響を抑え、後続の木がモデルを改善する余地を残す。
+* Shrinkage（縮小）: 各ステップで追加される決定木の重みに学習率 η を乗じることで、個々の木の影響を抑え、後続の木がモデルを改善する余地を残す。
 * Column Subsampling（特徴量サブサンプリング）: 各ノードの分割時にすべての特徴量を使わず、ランダムに選択した一部の特徴量のみを候補とすることで、多様性を確保し過学習を防ぐ。
 * Early Stopping（早期終了）: 検証データに対する損失が一定回数改善しなくなった時点で学習を打ち切り、最適な木の総数 $J$ を決定する。
 ## References
-([1]XGBoost: A Scalable Tree Boosting System. T.Chen, C.Guestrin, 2016)[https://arxiv.org/abs/1603.02754]
+[1] T. Chen, C. Guestrin, *XGBoost: A Scalable Tree Boosting System* (2016).  
+<https://arxiv.org/abs/1603.02754>
